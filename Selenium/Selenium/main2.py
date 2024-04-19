@@ -25,7 +25,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 # Open Google Images in the browser
 driver.get('https://images.google.com/')
 
-driver.maximize_window()
+# driver.minimize_window()
  
 # Finding the search box
 box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
@@ -51,18 +51,18 @@ def scroll_to_bottom():
  
         # waiting for the results to load
         # Increase the sleep time if your internet is slow
-        time.sleep(5)
+        time.sleep(3)
  
         new_height = driver.execute_script('\
         return document.body.scrollHeight')
  
         # click on "Show more results" (if exists)
         try:
-            driver.find_element_by_css_selector(".YstHxe input").click()
+            driver.find_element(By.CSS_SELECTOR, "input[value='Show more results']").click()
  
             # waiting for the results to load
             # Increase the sleep time if your internet is slow
-            time.sleep(5)
+            time.sleep(3)
  
         except:
             pass
@@ -79,8 +79,8 @@ scroll_to_bottom()
 try:
     imagens = driver.find_elements(By.XPATH, "//img[@class='YQ4gaf']")
     # array = []
-    teste = 740
-    
+    teste = 6060
+
     for imagem in imagens:
         print(imagem.get_attribute('src'))
         src = imagem.get_attribute('src')
